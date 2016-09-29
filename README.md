@@ -63,3 +63,7 @@ void setup()
 // Call resetTimer before timeout duration expires. Repeat.
 watchdog.resetTimer();
 ```
+
+##Install Library Dependencies
+
+[arduino-libraries](https://github.com/janelia-arduino/arduino-libraries)
