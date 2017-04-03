@@ -3,11 +3,10 @@
 #else
 #include "WProgram.h"
 #endif
-#include "SPI.h"
 #include "Streaming.h"
 #include "Watchdog.h"
 
-const int BAUDRATE = 9600;
+const int BAUDRATE = 115200;
 const int LOOP_DELAY_MORE = 300;
 const int LOOP_DELAY_LESS = 200;
 

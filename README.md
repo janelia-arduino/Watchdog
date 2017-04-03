@@ -1,4 +1,4 @@
-#Watchdog
+# Watchdog
 
 Authors:
 
@@ -13,7 +13,7 @@ after a set amount of time passes, unless the timer is reset.
 
 [Usage Examples](./examples)
 
-##Execute Interrupt Service Routine (ISR) Function on Timeout
+## Execute Interrupt Service Routine (ISR) Function on Timeout
 
 ```cpp
 void userFunc()
@@ -26,7 +26,7 @@ void setup()
 }
 ```
 
-##Reset Microcontroller on Timeout
+## Reset Microcontroller on Timeout
 
 ```cpp
 void setup()
@@ -35,7 +35,7 @@ void setup()
 }
 ```
 
-##Specify Timeout
+## Specify Timeout
 
 ```cpp
 void setup()
@@ -44,7 +44,7 @@ void setup()
 }
 ```
 
-##Timeout Values
+## Timeout Values
 
 * Watchdog::TIMEOUT_16MS
 * Watchdog::TIMEOUT_32MS
@@ -57,13 +57,13 @@ void setup()
 * Watchdog::TIMEOUT_4000MS
 * Watchdog::TIMEOUT_8000MS
 
-##Prevent Timeout
+## Prevent Timeout
 
 ```cpp
 // Call resetTimer before timeout duration expires. Repeat.
 watchdog.resetTimer();
 ```
 
-##Install Library Dependencies
+## Install Library Dependencies
 
 [arduino-libraries](https://github.com/janelia-arduino/arduino-libraries)
