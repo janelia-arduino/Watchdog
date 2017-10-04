@@ -4,16 +4,10 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
+#include <Arduino.h>
 #include <avr/wdt.h>
-#include "Streaming.h"
 
 
 class Watchdog
@@ -51,4 +45,3 @@ inline void Watchdog::isr()
 }
 
 #endif
-

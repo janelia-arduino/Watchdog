@@ -1,12 +1,9 @@
-#if defined(ARDUINO) && ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-#include "Streaming.h"
-#include "Watchdog.h"
+#include <Arduino.h>
+#include <Streaming.h>
+#include <Watchdog.h>
 
-const int BAUDRATE = 115200;
+
+const long BAUDRATE = 115200;
 const int LOOP_DELAY_MORE = 300;
 const int LOOP_DELAY_LESS = 200;
 

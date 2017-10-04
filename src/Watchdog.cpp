@@ -4,8 +4,8 @@
 // Authors:
 // Peter Polidoro polidorop@janelia.hhmi.org
 // ----------------------------------------------------------------------------
-
 #include "Watchdog.h"
+
 
 Watchdog::Watchdog()
 {
