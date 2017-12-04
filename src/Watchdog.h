@@ -7,41 +7,28 @@
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
 #include <Arduino.h>
+#if defined(__AVR__)
 #include <avr/wdt.h>
-
+#endif
 
 class Watchdog
 {
 public:
-  enum timeouts {TIMEOUT_16MS,
-                 TIMEOUT_32MS,
-                 TIMEOUT_64MS,
-                 TIMEOUT_125MS,
+  enum timeouts {TIMEOUT_15MS,
+                 TIMEOUT_30MS,
+                 TIMEOUT_60MS,
+                 TIMEOUT_120MS,
                  TIMEOUT_250MS,
                  TIMEOUT_500MS,
-                 TIMEOUT_1000MS,
-                 TIMEOUT_2000MS,
-                 TIMEOUT_4000MS,
-                 TIMEOUT_8000MS,
+                 TIMEOUT_1S,
+                 TIMEOUT_2S,
+                 TIMEOUT_4S,
+                 TIMEOUT_8S,
   };
   Watchdog();
-  void enableSystemReset();
-  void enableIsr(void (*isr_func)());
-  void init(boolean system_reset=false);
-  void begin(timeouts timeout=TIMEOUT_1000MS);
-  void resetTimer();
-  void isr();
+  void enable(timeouts timeout=TIMEOUT_1S);
+  void reset();
 private:
-  boolean system_reset_;
-  boolean isr_enabled_;
-  void (*isr_func_)();
 };
-
-extern Watchdog watchdog;
-
-inline void Watchdog::isr()
-{
-  (*isr_func_)();
-}
 
 #endif
