@@ -27,8 +27,10 @@ public:
   };
   Watchdog();
   void enable(timeouts timeout=TIMEOUT_1S);
+  bool enabled();
   void reset();
 private:
+  bool enabled_;
 };
 
 #endif

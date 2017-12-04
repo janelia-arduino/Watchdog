@@ -9,6 +9,7 @@
 
 Watchdog::Watchdog()
 {
+  enabled_ = false;
 }
 
 void Watchdog::enable(timeouts timeout)
@@ -93,6 +94,8 @@ void Watchdog::enable(timeouts timeout)
 
   interrupts();
 
+  enabled_ = true;
+
 #elif defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
 
   const uint32_t WDT_CYCLES_PER_MS = F_CPU/10000;
@@ -175,9 +178,16 @@ void Watchdog::enable(timeouts timeout)
 
   interrupts();
 
+  enabled_ = true;
+
 #else
 
 #endif
+}
+
+bool Watchdog::enabled()
+{
+  return enabled_;
 }
 
 void Watchdog::reset()
