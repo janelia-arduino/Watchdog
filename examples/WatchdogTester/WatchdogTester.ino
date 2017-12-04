@@ -24,9 +24,9 @@ const long BLINK_HALF_PERIOD = 100;
 const long RESET_DURATION = 500;
 
 Watchdog watchdog;
-unsigned long time_since_enabled;
-unsigned long time_since_blink;
-unsigned long time_since_reset;
+unsigned long enabled_time;
+unsigned long blink_time;
+unsigned long reset_time;
 
 void setup()
 {
@@ -46,9 +46,9 @@ void setup()
   // Setup WDT
   watchdog.enable(Watchdog::TIMEOUT_1S);
 
-  time_since_enabled = millis();
-  time_since_blink = time_since_enabled;
-  time_since_reset = time_since_enabled;
+  enabled_time = millis();
+  blink_time = enabled_time;
+  reset_time = enabled_time;
 
 }
 
@@ -57,17 +57,17 @@ void loop()
   const long time = millis();
 
   // Toggle led
-  if ((time - time_since_blink) >= BLINK_HALF_PERIOD)
+  if ((time - blink_time) >= BLINK_HALF_PERIOD)
   {
-    time_since_blink = time;
+    blink_time = time;
     digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN));
   }
 
   // Stop resetting watchdog after timeout
-  if (((time - time_since_enabled) <= TIMEOUT_DURATION) &&
-      ((time - time_since_reset) >= RESET_DURATION))
+  if (((time - enabled_time) <= TIMEOUT_DURATION) &&
+      ((time - reset_time) >= RESET_DURATION))
   {
-    time_since_reset = time;
+    reset_time = time;
     watchdog.reset();
   }
 }
