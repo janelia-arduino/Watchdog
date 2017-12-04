@@ -12,7 +12,7 @@ Watchdog::Watchdog()
   enabled_ = false;
 }
 
-void Watchdog::enable(timeouts timeout)
+void Watchdog::enable(Timeout timeout)
 {
 #if defined(__AVR__)
 
