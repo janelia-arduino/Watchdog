@@ -17,11 +17,11 @@
 
 
 const long BAUDRATE = 115200;
-const long SETUP_LED_OFF_DURATION = 1000;
-const long SETUP_LED_ON_DURATION = 5000;
-const long TIMEOUT_DURATION = 10000;
-const long BLINK_HALF_PERIOD = 100;
-const long RESET_DURATION = 500;
+const unsigned long SETUP_LED_OFF_DURATION = 1000;
+const unsigned long SETUP_LED_ON_DURATION = 5000;
+const unsigned long TIMEOUT_DURATION = 10000;
+const unsigned long BLINK_HALF_PERIOD = 100;
+const unsigned long RESET_DURATION = 500;
 
 Watchdog watchdog;
 unsigned long enabled_time;
@@ -54,7 +54,7 @@ void setup()
 
 void loop()
 {
-  const long time = millis();
+  const unsigned long time = millis();
 
   // Toggle led
   if ((time - blink_time) >= BLINK_HALF_PERIOD)
