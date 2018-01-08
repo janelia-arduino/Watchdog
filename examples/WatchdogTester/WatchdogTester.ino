@@ -16,7 +16,7 @@
 #include <Watchdog.h>
 
 
-const long BAUDRATE = 115200;
+const long BAUD = 115200;
 const unsigned long SETUP_LED_OFF_DURATION = 1000;
 const unsigned long SETUP_LED_ON_DURATION = 5000;
 const unsigned long TIMEOUT_DURATION = 10000;
@@ -31,7 +31,7 @@ unsigned long reset_time;
 void setup()
 {
   // Setup serial communications
-  Serial.begin(BAUDRATE);
+  Serial.begin(BAUD);
 
   pinMode(LED_BUILTIN,OUTPUT);
 
