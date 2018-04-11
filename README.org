@@ -1,0 +1,20 @@
+#+TITLE: Watchdog
+#+AUTHOR: Peter Polidoro
+#+EMAIL: peterpolidoro@gmail.com
+
+* Library Information
+  - Author :: Peter Polidoro
+  - License :: BSD
+
+  The watchdog monitors the operation of the system by expecting periodic
+  communication from the software, generally known as servicing or refreshing the
+  watchdog. If this periodic refreshing does not occur, the watchdog resets the
+  system.
+
+* Library Examples
+
+  [[./examples]]
+
+* Library Dependencies
+
+  [[https://github.com/janelia-arduino/arduino-libraries][arduino-libraries]]
