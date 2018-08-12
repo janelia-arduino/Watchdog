@@ -2,7 +2,7 @@
 // WatchdogTester.ino
 //
 // Authors:
-// Peter Polidoro polidorop@janelia.hhmi.org
+// Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
 
 // This sample program shows how to use the watch dog timer (WDT).

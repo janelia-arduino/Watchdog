@@ -2,7 +2,7 @@
 // Watchdog.h
 //
 // Authors:
-// Peter Polidoro polidorop@janelia.hhmi.org
+// Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
