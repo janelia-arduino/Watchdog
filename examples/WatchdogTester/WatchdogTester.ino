@@ -65,7 +65,7 @@ void loop()
 
   // Stop resetting watchdog after timeout
   if (((time - enabled_time) <= TIMEOUT_DURATION) &&
-      ((time - reset_time) >= RESET_DURATION))
+    ((time - reset_time) >= RESET_DURATION))
   {
     reset_time = time;
     watchdog.reset();
