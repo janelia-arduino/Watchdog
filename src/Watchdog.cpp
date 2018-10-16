@@ -99,7 +99,7 @@ void Watchdog::enable(Timeout timeout)
 #elif defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
 
   const uint32_t WDT_CYCLES_PER_MS = F_CPU/10000;
-  const uint8_t REGISTER_BITS = 16;
+  uint8_t REGISTER_BITS = 16;
 
   uint32_t timeout_ms = 1000;
 
