@@ -15,15 +15,15 @@ class Watchdog
 {
 public:
   enum Timeout {TIMEOUT_15MS,
-                TIMEOUT_30MS,
-                TIMEOUT_60MS,
-                TIMEOUT_120MS,
-                TIMEOUT_250MS,
-                TIMEOUT_500MS,
-                TIMEOUT_1S,
-                TIMEOUT_2S,
-                TIMEOUT_4S,
-                TIMEOUT_8S,
+    TIMEOUT_30MS,
+    TIMEOUT_60MS,
+    TIMEOUT_120MS,
+    TIMEOUT_250MS,
+    TIMEOUT_500MS,
+    TIMEOUT_1S,
+    TIMEOUT_2S,
+    TIMEOUT_4S,
+    TIMEOUT_8S,
   };
   Watchdog();
   void enable(Timeout timeout=TIMEOUT_1S);

@@ -12,7 +12,6 @@
 // WDT is initialized, and loop starts. It will flash led and reset wdt for the first 10 secs.
 // After that, it stops resetting wdt. This causes the WDT to reboot and the cycle starts over.
 
-#include <Arduino.h>
 #include <Watchdog.h>
 
 
