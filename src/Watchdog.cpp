@@ -180,7 +180,43 @@ void Watchdog::enable(Timeout timeout)
 
   enabled_ = true;
 
-#else
+#elif defined(__IMXRT1062__)
+
+  uint32_t timeout_s = 1;
+
+  switch (timeout)
+  {
+    case TIMEOUT_15MS:
+    case TIMEOUT_30MS:
+    case TIMEOUT_60MS:
+    case TIMEOUT_120MS:
+    case TIMEOUT_250MS:
+    case TIMEOUT_500MS:
+    case TIMEOUT_1S:
+    {
+      timeout_s = 1;
+      break;
+    }
+    case TIMEOUT_2S:
+    {
+      timeout_s = 2;
+      break;
+    }
+    case TIMEOUT_4S:
+    {
+      timeout_s = 4;
+      break;
+    }
+    case TIMEOUT_8S:
+    {
+      timeout_s = 8;
+      break;
+    }
+  }
+  WDT_timings_t config;
+  config.timeout = timeout_s;
+  wdt_.begin(config);
+  enabled_ = true;
 
 #endif
 }
@@ -204,6 +240,10 @@ void Watchdog::reset()
   WDOG_REFRESH = 0xB480;
 
   interrupts();
+
+#elif defined(__IMXRT1062__)
+
+  wdt_.feed();
 
 #endif
 }

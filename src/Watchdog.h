@@ -10,6 +10,9 @@
 #if defined(__AVR__)
 #include <avr/wdt.h>
 #endif
+#if defined(__IMXRT1062__)
+#include <Watchdog_t4.h>
+#endif
 
 class Watchdog
 {
@@ -31,6 +34,9 @@ public:
   void reset();
 private:
   bool enabled_;
+#if defined(__IMXRT1062__)
+  WDT_T4<WDT1> wdt_;
+#endif
 };
 
 #endif
