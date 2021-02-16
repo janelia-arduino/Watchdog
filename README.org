@@ -4,19 +4,37 @@
 
 * Library Information
   - Name :: Watchdog
-  - Version :: 2.3.0
+  - Version :: 2.3.1
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/Watchdog
-  - Author :: Peter Polidoro
+  - Author :: Peter Polidoro, Antonio Brewer, Steve Sawtelle
   - Email :: peterpolidoro@gmail.com
 
   The watchdog monitors the operation of the system by expecting periodic
   communication from the software, generally known as servicing or refreshing the
   watchdog. If this periodic refreshing does not occur, the watchdog resets the
-  system. Works with avr and teensy processors.
+  system. Works with avr, megaavr, and teensy processors.
+
+	When the watchdog timer is enabled, a call to the reset instruction is
+	required before the timer expires after the timeout duration, otherwise a
+	watchdog-initiated device reset will occur.
+
+** Timeout Durations
+
+	 Possible timeout durations are 15ms, 30ms, 60ms, 120ms, 250ms, 500ms, 1s, 2s, 4s, and 8s.
+
+	 Not all devices allow timeout durations.
+	 - Teensy 4.x does not allow timeout durations below 1s.
+	 - Other processors do not allow timeout durations of 4s or 8s.
 
 ** Teensy 4
 
 	 The watchdog code for the Teensy 4 was written by Antonio Brewer:
 	 
 	 https://github.com/tonton81/WDT_T4
+
+** Tripped Method
+
+	 The tripped method was written by Steve Sawtelle.
+
+	 It does not currently work properly for megaavr architectures.
