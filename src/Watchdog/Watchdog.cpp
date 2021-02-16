@@ -4,7 +4,8 @@
 // Authors:
 // Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
-#include "Watchdog.h"
+
+#include "../Watchdog.h"
 
 
 Watchdog::Watchdog()
@@ -244,6 +245,24 @@ void Watchdog::reset()
 #elif defined(__IMXRT1062__)
 
   wdt_.feed();
+
+#endif
+}
+
+// return true if last reset was WDT (Steve Sawtelle)
+bool Watchdog::tripped()
+{
+#if defined(__AVR__)
+
+  return ( (MCUSR & (1<<WDRF)) != 0 );
+
+#elif defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
+
+  return ( (RCM_SRS0 & RCM_SRS0_WDOG) != 0 );
+
+#elif defined(__IMXRT1062__)
+
+  return ( (SRC_SRSR & 0x10) != 0);
 
 #endif
 }

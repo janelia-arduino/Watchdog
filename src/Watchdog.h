@@ -4,6 +4,7 @@
 // Authors:
 // Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
+
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
 #include <Arduino.h>
@@ -11,7 +12,7 @@
 #include <avr/wdt.h>
 #endif
 #if defined(__IMXRT1062__)
-#include <Watchdog_t4.h>
+#include <Watchdog/Watchdog_t4.h>
 #endif
 
 class Watchdog
@@ -32,6 +33,7 @@ public:
   void enable(Timeout timeout=TIMEOUT_1S);
   bool enabled();
   void reset();
+	bool tripped();
 private:
   bool enabled_;
 #if defined(__IMXRT1062__)

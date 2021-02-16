@@ -15,10 +15,10 @@
 #include <Watchdog.h>
 
 
-const long BAUD = 115200;
 const unsigned long SETUP_LED_OFF_DURATION = 1000;
-const unsigned long SETUP_LED_ON_DURATION = 5000;
-const unsigned long TIMEOUT_DURATION = 10000;
+const unsigned long SETUP_LED_ON_IF_NOT_TRIPPED_DURATION = 4000;
+const unsigned long SETUP_LED_ON_IF_TRIPPED_DURATION = 1500;
+const unsigned long TIMEOUT_DURATION = 6000;
 const unsigned long BLINK_HALF_PERIOD = 100;
 const unsigned long RESET_DURATION = 500;
 
@@ -27,20 +27,43 @@ unsigned long enabled_time;
 unsigned long blink_time;
 unsigned long reset_time;
 
-void setup()
+void setLedOff()
 {
-  // Setup serial communications
-  Serial.begin(BAUD);
-
-  pinMode(LED_BUILTIN,OUTPUT);
-
-  // Indicate we are starting over by hold led off
   digitalWrite(LED_BUILTIN,LOW);
   delay(SETUP_LED_OFF_DURATION);
+}
 
-  // Indicate we are in setup by hold LED on
+void setLedOn(unsigned long duration)
+{
   digitalWrite(LED_BUILTIN,HIGH);
-  delay(SETUP_LED_ON_DURATION);
+	delay(duration);
+}
+
+void toggleLed()
+{
+	digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN));
+}
+
+void setup()
+{
+  pinMode(LED_BUILTIN,OUTPUT);
+
+  // Indicate we are starting over by holding led off
+	setLedOff();
+
+  // Indicate we are in setup by holding LED on
+	if (!watchdog.tripped())
+	{
+		// blink once to indicate power cycle reset
+		setLedOn(SETUP_LED_ON_IF_NOT_TRIPPED_DURATION);
+	}
+	else
+	{
+		// blink twice to indicate watchdog tripped reset
+		setLedOn(SETUP_LED_ON_IF_TRIPPED_DURATION);
+		setLedOff();
+		setLedOn(SETUP_LED_ON_IF_TRIPPED_DURATION);
+	}
 
   // Setup WDT
   watchdog.enable(Watchdog::TIMEOUT_1S);
@@ -48,7 +71,6 @@ void setup()
   enabled_time = millis();
   blink_time = enabled_time;
   reset_time = enabled_time;
-
 }
 
 void loop()
@@ -59,7 +81,7 @@ void loop()
   if ((time - blink_time) >= BLINK_HALF_PERIOD)
   {
     blink_time = time;
-    digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN));
+		toggleLed();
   }
 
   // Stop resetting watchdog after timeout

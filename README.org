@@ -14,3 +14,9 @@
   communication from the software, generally known as servicing or refreshing the
   watchdog. If this periodic refreshing does not occur, the watchdog resets the
   system. Works with avr and teensy processors.
+
+** Teensy 4
+
+	 The watchdog code for the Teensy 4 was written by Antonio Brewer:
+	 
+	 https://github.com/tonton81/WDT_T4
