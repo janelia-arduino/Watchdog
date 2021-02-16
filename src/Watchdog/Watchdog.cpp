@@ -17,85 +17,63 @@ void Watchdog::enable(Timeout timeout)
 {
 #if defined(__AVR__)
 
-  uint8_t wdtcsr_byte = 0;
+  uint8_t wdt_timeout = 0;
 
   switch (timeout)
   {
     case TIMEOUT_15MS:
     {
-      wdtcsr_byte = WDTO_15MS;
+      wdt_timeout = WDTO_15MS;
       break;
     }
     case TIMEOUT_30MS:
     {
-      wdtcsr_byte = WDTO_30MS;
+      wdt_timeout = WDTO_30MS;
       break;
     }
     case TIMEOUT_60MS:
     {
-      wdtcsr_byte = WDTO_60MS;
+      wdt_timeout = WDTO_60MS;
       break;
     }
     case TIMEOUT_120MS:
     {
-      wdtcsr_byte = WDTO_120MS;
+      wdt_timeout = WDTO_120MS;
       break;
     }
     case TIMEOUT_250MS:
     {
-      wdtcsr_byte = WDTO_250MS;
+      wdt_timeout = WDTO_250MS;
       break;
     }
     case TIMEOUT_500MS:
     {
-      wdtcsr_byte = WDTO_250MS;
+      wdt_timeout = WDTO_250MS;
       break;
     }
     case TIMEOUT_1S:
     {
-      wdtcsr_byte = WDTO_1S;
+      wdt_timeout = WDTO_1S;
       break;
     }
     case TIMEOUT_2S:
     {
-      wdtcsr_byte = WDTO_1S;
+      wdt_timeout = WDTO_2S;
       break;
     }
     case TIMEOUT_4S:
     {
-      wdtcsr_byte = WDTO_1S;
+      wdt_timeout = WDTO_4S;
       break;
     }
     case TIMEOUT_8S:
     {
-      wdtcsr_byte = WDTO_8S;
+      wdt_timeout = WDTO_8S;
       break;
     }
   }
 
-  // Set Watchdog settings
-
-  // Enable system reset
-  wdtcsr_byte |= (1<<WDE);
-
-  noInterrupts();
-
-  // Reset watchdog timer
-  wdt_reset();
-
-  // Clear WDRF in MCUSR
-  MCUSR &= ~(1<<WDRF);
-
-  // Enter Watchdog Configuration mode:
-  // Write logical one to WDCE and WDE
-  // Keep old prescaler setting to prevent unintentional time-out
-  WDTCSR |= (1<<WDCE) | (1<<WDE);
-
-  WDTCSR = wdtcsr_byte;
-
-  interrupts();
-
-  enabled_ = true;
+	wdt_enable(wdt_timeout);
 
 #elif defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
 
@@ -179,8 +157,6 @@ void Watchdog::enable(Timeout timeout)
 
   interrupts();
 
-  enabled_ = true;
-
 #elif defined(__IMXRT1062__)
 
   uint32_t timeout_s = 1;
@@ -217,9 +193,9 @@ void Watchdog::enable(Timeout timeout)
   WDT_timings_t config;
   config.timeout = timeout_s;
   wdt_.begin(config);
-  enabled_ = true;
 
 #endif
+	enabled_ = true;
 }
 
 bool Watchdog::enabled()
@@ -252,7 +228,7 @@ void Watchdog::reset()
 // return true if last reset was WDT (Steve Sawtelle)
 bool Watchdog::tripped()
 {
-#if defined(__AVR__)
+#if defined(__AVR__) && defined(MCUSR)
 
   return ( (MCUSR & (1<<WDRF)) != 0 );
 
@@ -263,6 +239,10 @@ bool Watchdog::tripped()
 #elif defined(__IMXRT1062__)
 
   return ( (SRC_SRSR & 0x10) != 0);
+
+#else
+
+	return false;
 
 #endif
 }

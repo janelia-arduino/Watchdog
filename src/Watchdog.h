@@ -8,9 +8,17 @@
 #ifndef WATCHDOG_H
 #define WATCHDOG_H
 #include <Arduino.h>
+
 #if defined(__AVR__)
 #include <avr/wdt.h>
+#if !defined(WDTO_4S)
+#define WDTO_4S WDTO_1S
 #endif
+#if !defined(WDTO_8S)
+#define WDTO_8S WDTO_1S
+#endif
+#endif
+
 #if defined(__IMXRT1062__)
 #include <Watchdog/Watchdog_t4.h>
 #endif
@@ -18,10 +26,11 @@
 class Watchdog
 {
 public:
-  enum Timeout {TIMEOUT_15MS,
+  enum Timeout {
+		TIMEOUT_15MS,
     TIMEOUT_30MS,
     TIMEOUT_60MS,
-    TIMEOUT_120MS,
+    TIMEOUT_120MS, 
     TIMEOUT_250MS,
     TIMEOUT_500MS,
     TIMEOUT_1S,
