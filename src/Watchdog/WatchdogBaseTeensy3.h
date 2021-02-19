@@ -17,9 +17,9 @@ class WatchdogBase
 {
 public:
   void reset();
-	bool tripped();
+  bool tripped();
 protected:
-	void enable(int timeout_ms);
+  void enable(int timeout_ms);
 };
 
 #endif

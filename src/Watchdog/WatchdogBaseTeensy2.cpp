@@ -31,68 +31,68 @@ void WatchdogBase::enable(int timeout_ms)
   uint8_t wdtcsr_byte = 0;
 
   switch (timeout_ms)
-		{
-		case 15:
-			{
-				wdtcsr_byte = WDTO_15MS;
-				break;
-			}
-		case 30:
-			{
-				wdtcsr_byte = WDTO_30MS;
-				break;
-			}
-		case 60:
-			{
-				wdtcsr_byte = WDTO_60MS;
-				break;
-			}
+    {
+    case 15:
+      {
+        wdtcsr_byte = WDTO_15MS;
+        break;
+      }
+    case 30:
+      {
+        wdtcsr_byte = WDTO_30MS;
+        break;
+      }
+    case 60:
+      {
+        wdtcsr_byte = WDTO_60MS;
+        break;
+      }
     case 120:
-			{
-				wdtcsr_byte = WDTO_120MS;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_120MS;
+        break;
+      }
     case 250:
-			{
-				wdtcsr_byte = WDTO_250MS;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_250MS;
+        break;
+      }
     case 500:
-			{
-				wdtcsr_byte = WDTO_500MS;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_500MS;
+        break;
+      }
     case 1000:
-			{
-				wdtcsr_byte = WDTO_1S;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_1S;
+        break;
+      }
     case 2000:
-			{
-				wdtcsr_byte = WDTO_2S;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_2S;
+        break;
+      }
     case 4000:
-			{
-				wdtcsr_byte = WDTO_4S;
-				break;
-			}
+      {
+        wdtcsr_byte = WDTO_4S;
+        break;
+      }
     case 8000:
-			{
-				wdtcsr_byte = WDTO_8S;
-				break;
-			}
-		}
+      {
+        wdtcsr_byte = WDTO_8S;
+        break;
+      }
+    }
 
   // Clear WDRF in MCUSR
   MCUSR &= ~(1<<WDRF);
 
   noInterrupts();
 
-	// The Watchdog Timer should be reset before any change of the WDP bits, since
-	// a change in the WDP bits can result in a time-out when switching to a
-	// shorter time-out period.
-	wdt_reset();
+  // The Watchdog Timer should be reset before any change of the WDP bits, since
+  // a change in the WDP bits can result in a time-out when switching to a
+  // shorter time-out period.
+  wdt_reset();
 
   // Enter Watchdog Configuration mode
   WDTCSR |= (1<<WDCE) | (1<<WDE);
@@ -100,10 +100,10 @@ void WatchdogBase::enable(int timeout_ms)
   // Enable watchdog interrupt mode
   wdtcsr_byte |= (1<<WDIE);
 
-	// Set watchdog timer control register
-	WDTCSR = wdtcsr_byte;
+  // Set watchdog timer control register
+  WDTCSR = wdtcsr_byte;
   
-	interrupts();
+  interrupts();
 
 }
 

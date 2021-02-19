@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: Watchdog
-  - Version :: 3.0.0
+  - Version :: 3.0.1
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/Watchdog
   - Author :: Peter Polidoro, Antonio Brewer, Steve Sawtelle

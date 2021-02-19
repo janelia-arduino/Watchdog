@@ -59,11 +59,11 @@ typedef struct WDT_timings_t {
 #define WDT_OPT WDT_T4<_device>
 
 class WDT_T4_Base {
-  public:
-    virtual void watchdog_isr() = 0;
-    virtual void ewatchdog_isr() = 0;
-    watchdog_class_ptr watchdog_class_handler = 0;
-  private:
+public:
+  virtual void watchdog_isr() = 0;
+  virtual void ewatchdog_isr() = 0;
+  watchdog_class_ptr watchdog_class_handler = 0;
+private:
 };
 
 static WDT_T4_Base* _WDT1 = nullptr;
@@ -72,16 +72,16 @@ static WDT_T4_Base* _WDT3 = nullptr;
 static WDT_T4_Base* _EWM = nullptr;
 
 WDT_CLASS class WDT_T4 : public WDT_T4_Base {
-  public:
-    void begin(WDT_timings_t config);
-    void callback(watchdog_class_ptr handler) { watchdog_class_handler = handler; }
-    void reset();
-    void feed();
-    bool expired();
-  private:
-    watchdog_class_ptr watchdog_class_handler;
-    void watchdog_isr();
-    void ewatchdog_isr();
+public:
+  void begin(WDT_timings_t config);
+  void callback(watchdog_class_ptr handler) { watchdog_class_handler = handler; }
+  void reset();
+  void feed();
+  bool expired();
+private:
+  watchdog_class_ptr watchdog_class_handler;
+  void watchdog_isr();
+  void ewatchdog_isr();
 };
 
 #include "WdtTeensy4.tpp"

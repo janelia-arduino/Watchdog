@@ -30,7 +30,7 @@ class WdtAvr
 public:
   void reset();
 protected:
-	void enable(int timeout_ms);
+  void enable(int timeout_ms);
 };
 
 #endif

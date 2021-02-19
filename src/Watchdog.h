@@ -37,7 +37,7 @@ class Watchdog : public WatchdogBase
 {
 public:
   enum Timeout {
-		TIMEOUT_15MS=15,
+    TIMEOUT_15MS=15,
     TIMEOUT_30MS=30,
     TIMEOUT_60MS=60,
     TIMEOUT_120MS=120, 
@@ -48,11 +48,11 @@ public:
     TIMEOUT_4S=4000,
     TIMEOUT_8S=8000
   };
-	Watchdog();
+  Watchdog();
   void enable(Timeout timeout=TIMEOUT_1S);
   bool enabled();
   void reset();
-	bool tripped();
+  bool tripped();
 private:
   bool enabled_;
 };

@@ -9,14 +9,14 @@
 
 
 Watchdog::Watchdog()
-	: enabled_{false}
+  : enabled_{false}
 {
 }
 
 void Watchdog::enable(Timeout timeout)
 {
-	WatchdogBase::enable(timeout);
-	enabled_ = true;
+  WatchdogBase::enable(timeout);
+  enabled_ = true;
 }
 
 bool Watchdog::enabled()
@@ -26,10 +26,10 @@ bool Watchdog::enabled()
 
 void Watchdog::reset()
 {
-	WatchdogBase::reset();
+  WatchdogBase::reset();
 }
 
 bool Watchdog::tripped()
 {
-	return WatchdogBase::tripped();
+  return WatchdogBase::tripped();
 }

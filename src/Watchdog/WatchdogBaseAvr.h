@@ -18,7 +18,7 @@
 class WatchdogBase : public WdtAvr
 {
 public:
-	bool tripped();
+  bool tripped();
 };
 
 #endif
