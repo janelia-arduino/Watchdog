@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: Watchdog
-  - Version :: 2.3.1
+  - Version :: 3.0.0
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/Watchdog
   - Author :: Peter Polidoro, Antonio Brewer, Steve Sawtelle
@@ -36,5 +36,3 @@
 ** Tripped Method
 
 	 The tripped method was written by Steve Sawtelle.
-
-	 It does not currently work properly for megaavr architectures.

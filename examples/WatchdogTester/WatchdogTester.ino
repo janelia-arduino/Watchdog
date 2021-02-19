@@ -5,12 +5,15 @@
 // Peter Polidoro peterpolidoro@gmail.com
 // ----------------------------------------------------------------------------
 
-// This sample program shows how to use the watch dog timer (WDT).
+// This sample program shows how to use the watchdog timer.
 
-// When program starts, it turns LED off for 1 seconds.
-// It then turns LED on, and pauses for 5 seconds letting you know it is ready to start.
-// WDT is initialized, and loop starts. It will flash led and reset wdt for the first 10 secs.
-// After that, it stops resetting wdt. This causes the WDT to reboot and the cycle starts over.
+// When the device first powers on, it turns the LED off for 1 seconds. It then
+// turns the LED on, and pauses for 4 seconds letting you know it is ready to
+// start. Watchdog is initialized and the loop starts. It will flash the LED and
+// reset watchdog for the first 6 secs. After that, it stops resetting watchdog.
+// This causes the watchdog to reboot the device. When the device powers on
+// after a watchdog device reset, it blinks the LED twice for 1.5 seconds before
+// flashing the LED to let you know the watchdog had been previously tripped.
 
 #include <Watchdog.h>
 
@@ -65,7 +68,7 @@ void setup()
 		setLedOn(SETUP_LED_ON_IF_TRIPPED_DURATION);
 	}
 
-  // Setup WDT
+  // Setup watchdog
   watchdog.enable(Watchdog::TIMEOUT_1S);
 
   enabled_time = millis();
