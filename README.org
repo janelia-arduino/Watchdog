@@ -4,7 +4,7 @@
 
 * Library Information
   - Name :: Watchdog
-  - Version :: 3.0.1
+  - Version :: 3.0.2
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/Watchdog
   - Author :: Peter Polidoro, Antonio Brewer, Steve Sawtelle
@@ -36,3 +36,6 @@
 ** Tripped Method
 
 	 The tripped method was written by Steve Sawtelle.
+
+	 Unfortunately this method does not work with certain microprocessors and
+	 boards, such as the Arduino Mega 2560, Teensy 2.0, and Teensy++ 2.0.

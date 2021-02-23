@@ -13,6 +13,7 @@
 //WDT Interrupt which will soft reset the board
 ISR(WDT_vect)
 {
+  wdt_disable();
   _restart_Teensyduino_();
 }
 
