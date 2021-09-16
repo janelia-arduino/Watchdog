@@ -2,7 +2,7 @@
 // WatchdogTester.ino
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 
 // This sample program shows how to use the watchdog timer.

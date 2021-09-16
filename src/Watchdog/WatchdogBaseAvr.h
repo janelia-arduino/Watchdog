@@ -2,7 +2,7 @@
 // WatchdogBaseAvr.h
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 
 #ifndef WATCHDOG_BASE_AVR_H

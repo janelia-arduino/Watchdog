@@ -2,7 +2,7 @@
 // WatchdogBaseTeensy2.h
 //
 // Authors:
-// Peter Polidoro peterpolidoro@gmail.com
+// Peter Polidoro peter@polidoro.io
 // ----------------------------------------------------------------------------
 
 #ifndef WATCHDOG_BASE_TEENSY2_H

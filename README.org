@@ -1,6 +1,6 @@
 #+TITLE: Watchdog
 #+AUTHOR: Peter Polidoro
-#+EMAIL: peterpolidoro@gmail.com
+#+EMAIL: peter@polidoro.io
 
 * Library Information
   - Name :: Watchdog
@@ -8,7 +8,7 @@
   - License :: BSD
   - URL :: https://github.com/janelia-arduino/Watchdog
   - Author :: Peter Polidoro, Antonio Brewer, Steve Sawtelle
-  - Email :: peterpolidoro@gmail.com
+  - Email :: peter@polidoro.io
 
   The watchdog monitors the operation of the system by expecting periodic
   communication from the software, generally known as servicing or refreshing the
